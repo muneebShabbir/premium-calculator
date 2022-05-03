@@ -100,7 +100,12 @@ export default {
     },
     stepForward: function () {
       console.log(this.form)
-      // this.$emit('next')
+      if (this.form.age > 100) {
+        this.$emit('invalid')
+      } else {
+        this.$emit('next')
+      }
+      
     },
     getAdditionalAmount(percentage) {
       return this.basePremium * (percentage/100)
