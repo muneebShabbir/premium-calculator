@@ -3,20 +3,23 @@
     <template v-if="step === 1">
       <FormStep1 msg="Welcome to Your Vue.js App with Muneeb" @start="nextStep"/>
     </template>
-    <template v-else-if="step === 2">
-      <!-- <FormStep1 msg="Welcome to Your Vue.js App with Muneeb" @next="nextStep"/> -->
-      <FormStep2 msg="Welcome to Your Vue.js App with Muneeb" 
+    <template v-else-if="step > 1">
+      <!-- To keep alive the form step for next steps -->
+      <FormStep2 v-show="step === 2" 
         @next="nextStep" 
         @back="previousStep"
         @invalid="redirectToErrorPage"
       />
+
+      <template v-if="step === 3">
+        <FormStep3 
+          @buy="initForm" 
+          @back="previousStep"
+        />
+      </template>
+
     </template>
-    <template v-else-if="step === 3">
-      <FormStep3 
-        @buy="initForm" 
-        @back="previousStep"
-      />
-    </template>
+    
   </div>
 </template>
 

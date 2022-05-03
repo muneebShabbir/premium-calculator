@@ -19,7 +19,7 @@
         <select v-model="form.country">
           <!-- <option disabled value="">Please select one</option> -->
           <option v-for="option in countryOptions" v-bind:value="option" :key="option.currencyCode">
-            {{ option.country }}
+            {{ option.countryName }}
           </option>
         </select>
       </div>
@@ -39,16 +39,18 @@
       </span>
     </div>
     <div v-if="totalPremium">
-      Your Premium is now: {{totalPremium}}
+      Your Premium is: {{totalPremium}}
     </div>
     <div>
       <button @click="stepBack">Back</button>
-      <button @click="stepForward">Next</button>
+      <button @click="stepForward" :disabled="!(form.name && form.age)">Next</button>
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'FormStep1',
   props: {
@@ -63,9 +65,9 @@ export default {
         package: ''
       },
       countryOptions: [
-        { country: 'Hong Kong', currencyCode: 'HKD', rate: 1 },
-        { country: 'USA', currencyCode: 'USD', rate: 2 },
-        { country: 'Australia', currencyCode: 'AUD', rate: 3 },
+        { countryName: 'Hong Kong', currencyCode: 'HKD', rate: 1 },
+        { countryName: 'USA', currencyCode: 'USD', rate: 2 },
+        { countryName: 'Australia', currencyCode: 'AUD', rate: 3 },
       ],
       packageList: [
         {
@@ -95,6 +97,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'saveUserData',
+    ]),
+
     stepBack: function () {
       this.$emit('back')
     },
@@ -103,6 +109,7 @@ export default {
       if (this.form.age > 100) {
         this.$emit('invalid')
       } else {
+        this.saveUserData({requestForm: this.form, totalPremium: this.totalPremium})
         this.$emit('next')
       }
       
