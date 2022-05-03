@@ -1,0 +1,38 @@
+<template>
+  <div class="home">
+    <template v-if="step === 1">
+      <FormStep1 msg="Welcome to Your Vue.js App with Muneeb" @start="nextStep"/>
+    </template>
+    <template v-else-if="step === 2">
+      <!-- <FormStep1 msg="Welcome to Your Vue.js App with Muneeb" @next="nextStep"/> -->
+      <FormStep2 msg="Welcome to Your Vue.js App with Muneeb" @next="nextStep" @back="previousStep"/>
+    </template>
+  </div>
+</template>
+
+<script>
+// @ is an alias to /src
+import FormStep1 from '@/components/FormStep1.vue'
+import FormStep2 from '@/components/FormStep2.vue'
+
+export default {
+  name: 'FormView',
+  components: {
+    FormStep1,
+    FormStep2
+  },
+  data: function () {
+    return {
+      step: 1
+    }
+  },
+  methods: {
+    nextStep: function () {
+      this.step++
+    },
+    previousStep: function () {
+      this.step--
+    }
+  }
+}
+</script>
