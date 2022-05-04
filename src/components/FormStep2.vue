@@ -4,21 +4,21 @@
     <div class="flex flex-col items-center py-2">
       <div class="md:w-1/2">
         <div class="form-field-label">Name</div>
-        <input class="form-field" v-model="form.name" placeholder="Enter your name">
+        <input id="name" class="form-field" v-model="form.name" placeholder="Enter your name">
       </div>
     </div>
 
     <div class="flex flex-col items-center py-2">
       <div class="md:w-1/2">
         <div class="form-field-label">Age</div>
-        <input class="form-field" type="text" onkeypress="return /[0-9]/i.test(event.key)" v-model="form.age" placeholder="Enter your age" maxlength="3">
+        <input id="age" class="form-field" type="text" onkeypress="return /[0-9]/i.test(event.key)" v-model="form.age" placeholder="Enter your age" maxlength="3">
       </div>
     </div>
 
     <div class="flex flex-col items-center py-2">
       <div class="md:w-1/2">
         <div class="form-field-label">Where do you live</div>
-        <select class="form-field" v-model="form.country">
+        <select id="country" class="form-field" v-model="form.country">
             <!-- <option disabled value="">Please select one</option> -->
             <option v-for="option in countryOptions" v-bind:value="option" :key="option.currencyCode">
               {{ option.countryName }}
@@ -45,8 +45,8 @@
       <span>Your Premium is: </span> <span>{{totalPremium}}{{form.country.currencyCode}}</span>
     </div>
     <div class="py-4 space-x-4">
-      <button class="secondary-button" @click="stepBack">Back</button>
-      <button class="primary-button disabled:opacity-50" :class="!(form.name && form.age) ? 'cursor-not-allowed': ''" @click="stepForward" :disabled="!(form.name && form.age)">Next</button>
+      <button id="backToHome" class="secondary-button" @click="stepBack">Back</button>
+      <button id="nextToHome" class="primary-button disabled:opacity-50" :class="!(form.name && form.age) ? 'cursor-not-allowed': ''" @click="stepForward" :disabled="!(form.name && form.age)">Next</button>
     </div>
   </div>
 </template>
@@ -108,7 +108,6 @@ export default {
       this.$emit('back')
     },
     stepForward: function () {
-      console.log(this.form)
       if (this.form.age > 100) {
         this.$emit('invalid')
       } else {

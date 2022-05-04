@@ -5,7 +5,7 @@
       Lets buy some insurance. Its going to take only few ssteps.
     </p>
     <div>
-      <button @click="startForm"
+      <button @click="startForm" id="startReg"
       class="primary-button"
       >Start</button>
     </div>
