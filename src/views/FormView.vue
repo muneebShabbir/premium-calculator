@@ -28,6 +28,7 @@
 import FormStep1 from '@/components/FormStep1.vue'
 import FormStep2 from '@/components/FormStep2.vue'
 import FormStep3 from '@/components/FormStep3.vue'
+import { mapActions } from 'vuex'
 
 export default {
   name: 'FormView',
@@ -42,6 +43,10 @@ export default {
     }
   },
   methods: {
+    ...mapActions([
+      'clearUserData',
+    ]),
+
     nextStep: function () {
       this.step++
     },
@@ -53,7 +58,7 @@ export default {
     },
     initForm: function () {
       this.step = 1
-      //MS: clear stores here
+      this.clearUserData()
     }
   }
 }

@@ -29,6 +29,10 @@ export default new Vuex.Store({
     saveUserData ({ commit }, {requestForm, totalPremium}) {
       commit('updateUserForm', requestForm)
       commit('updateTotalPremium', totalPremium)
+    },
+    clearUserData ({ commit }) {
+      commit('updateUserForm', {})
+      commit('updateTotalPremium', 0)
     }
   },
   // modules: {
