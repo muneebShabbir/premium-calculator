@@ -1,18 +1,18 @@
 <template>
   <div class="hello">
-    <h1>Summary</h1>
+    <h1 class="page-heading">Summary</h1>
     <div>
-      <h1>{{summary.name}}</h1>
+      <h1 class="pb-5 text-xl font-bold">{{summary.name}}</h1>
     </div>
 
-    <div>Name: {{summary.name}}</div>
-    <div>Age: {{summary.age}}</div>
-    <div>Where do you live: {{summary.country}}</div>
-    <div>Package: {{summary.package}}</div>
-    <div>Premium: {{summary.premium}}</div>
-    <div>
-      <button @click="stepBack">Back</button>
-      <button @click="buyPackage">Buy</button>
+    <div class="py-1 "><span class="font-semibold text-sm">Name: </span>{{summary.name}}</div>
+    <div class="py-1"><span class="font-semibold text-sm">Age: </span>{{summary.age}}</div>
+    <div class="py-1"><span class="font-semibold text-sm">Where do you live: </span>{{summary.country}}</div>
+    <div class="py-1"><span class="font-semibold text-sm">Package: </span>{{summary.package}}</div>
+    <div class="py-1"><span class="font-semibold text-sm">Premium: </span>{{summary.premium}}</div>
+    <div class="pt-8 pt-6 space-x-4">
+      <button class="secondary-button" @click="stepBack">Back</button>
+      <button class="primary-button" @click="buyPackage">Buy</button>
     </div>
   </div>
 </template>

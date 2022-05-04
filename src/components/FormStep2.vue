@@ -46,7 +46,7 @@
     </div>
     <div class="py-4 space-x-4">
       <button class="secondary-button" @click="stepBack">Back</button>
-      <button class="primary-button" @click="stepForward" :disabled="!(form.name && form.age)">Next</button>
+      <button class="primary-button disabled:opacity-50" :class="!(form.name && form.age) ? 'cursor-not-allowed': ''" @click="stepForward" :disabled="!(form.name && form.age)">Next</button>
     </div>
   </div>
 </template>
