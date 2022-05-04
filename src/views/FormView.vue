@@ -1,25 +1,29 @@
 <template>
-  <div class="home">
-    <template v-if="step === 1">
-      <FormStep1 msg="Welcome to Your Vue.js App with Muneeb" @start="nextStep"/>
-    </template>
-    <template v-else-if="step > 1">
-      <!-- To keep alive the form step for next steps -->
-      <FormStep2 v-show="step === 2" 
-        @next="nextStep" 
-        @back="previousStep"
-        @invalid="redirectToErrorPage"
-      />
 
-      <template v-if="step === 3">
-        <FormStep3 
-          @buy="initForm" 
-          @back="previousStep"
-        />
-      </template>
+  <div class="flex items-center h-screen w-full">
+    <div class="w-full bg-white rounded shadow-lg p-8 m-4 md:max-w-xl md:mx-auto">
+      <div class="mb-4">
+        <template v-if="step === 1">
+          <FormStep1 @start="nextStep"/>
+        </template>
+        <template v-else-if="step > 1">
+          <!-- To keep alive the form step for next steps -->
+          <FormStep2 v-show="step === 2" 
+            @next="nextStep" 
+            @back="previousStep"
+            @invalid="redirectToErrorPage"
+          />
 
-    </template>
-    
+          <template v-if="step === 3">
+            <FormStep3 
+              @buy="initForm" 
+              @back="previousStep"
+            />
+          </template>
+
+        </template>
+      </div>
+    </div>
   </div>
 </template>
 

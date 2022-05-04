@@ -1,11 +1,13 @@
 <template>
-  <div class="hello">
-    <h1>Hello There</h1>
-    <p>
+  <div class="grid grid-cols-1">
+    <h1 class="text-4xl font-bold leading-relaxed mb-5">Hello There!</h1>
+    <p class="mb-5">
       Lets buy some insurance. Its going to take only few ssteps.
     </p>
     <div>
-      <button @click="startForm">Start</button>
+      <button @click="startForm"
+      class="primary-button"
+      >Start</button>
     </div>
   </div>
 </template>
@@ -13,9 +15,6 @@
 <script>
 export default {
   name: 'FormStep1',
-  props: {
-    msg: String
-  },
   methods: {
     startForm: function () {
       this.$emit('start')

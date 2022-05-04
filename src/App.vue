@@ -5,6 +5,9 @@
 </template>
 
 <style>
+.primary-button {
+  @apply bg-black text-white font-bold py-2 px-4 border rounded;
+}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
