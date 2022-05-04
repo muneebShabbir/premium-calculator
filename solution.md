@@ -1,5 +1,5 @@
 **Solution:**
-- I choose Vue.js to build this demo app, tailwindcss for styling and Vuex for state management
+- I choose Vue.js to build this demo app, tailwindcss for styling, Vuex for state management and Jest for unit testing
 - I created this as a Single page application.
 - App consists of two routes one contains multi step form on one contains error page
 - Form page holds responsibility to present form step and handles error if error occures in any step
@@ -13,6 +13,6 @@
 
 **Demo:**
 
-https://user-images.githubusercontent.com/47774476/166635516-d77f1f36-a91d-4d37-b8b7-efe950f0933b.mp4
+https://user-images.githubusercontent.com/47774476/166681382-8c7dcaf1-a1c1-48e0-b36a-b48e00aef9d5.mp4
 
 **PS:** Country dropdown is not visible in video
