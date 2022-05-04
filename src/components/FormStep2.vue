@@ -1,49 +1,52 @@
 <template>
-  <div class="hello">
-    <h1>Tell us about yourself</h1>
-    <div>
-      <div>Name</div>
-      <div><input v-model="form.name" placeholder="Enter your name"></div>
-    </div>
-
-    <div>
-      <div>Age</div>
-      <div>
-        <input type="text" onkeypress="return /[0-9]/i.test(event.key)" v-model="form.age" placeholder="Enter your age" maxlength="3">
+  <div>
+    <h1 class="page-heading">Tell us about yourself</h1>
+    <div class="flex flex-col items-center py-2">
+      <div class="md:w-1/2">
+        <div class="form-field-label">Name</div>
+        <input class="form-field" v-model="form.name" placeholder="Enter your name">
       </div>
     </div>
 
-    <div>
-      <div>Where do you live</div>
-      <div>
-        <select v-model="form.country">
-          <!-- <option disabled value="">Please select one</option> -->
-          <option v-for="option in countryOptions" v-bind:value="option" :key="option.currencyCode">
-            {{ option.countryName }}
-          </option>
+    <div class="flex flex-col items-center py-2">
+      <div class="md:w-1/2">
+        <div class="form-field-label">Age</div>
+        <input class="form-field" type="text" onkeypress="return /[0-9]/i.test(event.key)" v-model="form.age" placeholder="Enter your age" maxlength="3">
+      </div>
+    </div>
+
+    <div class="flex flex-col items-center py-2">
+      <div class="md:w-1/2">
+        <div class="form-field-label">Where do you live</div>
+        <select class="form-field" v-model="form.country">
+            <!-- <option disabled value="">Please select one</option> -->
+            <option v-for="option in countryOptions" v-bind:value="option" :key="option.currencyCode">
+              {{ option.countryName }}
+            </option>
         </select>
       </div>
     </div>
 
+    <div class="flex flex-col items-center py-2">
+      <div class="md:w-1/2 text-left">
+        <div class="pb-1" v-for="inPackage in packageList" :key="inPackage.id">
+          <input type="radio" :id="inPackage.id" :value="inPackage" name="package" v-model="form.package">
+          <label class="ml-2" :for="inPackage.id">{{inPackage.text}} 
+            <span v-if="inPackage.percentage > 0 && form.country && form.age">
+              (+{{getAdditionalAmount(inPackage.percentage)}}{{form.country.currencyCode}}, {{inPackage.percentage}}%)
+            </span>
+            </label>
+          <br>
+        </div>
+      </div>
+    </div>
 
-    <div>
-      
-      <span v-for="inPackage in packageList" :key="inPackage.id">
-        <input type="radio" :id="inPackage.id" :value="inPackage" name="package" v-model="form.package">
-        <label :for="inPackage.id">{{inPackage.text}} 
-          <span v-if="inPackage.percentage > 0 && form.country && form.age">
-            (+{{getAdditionalAmount(inPackage.percentage)}}{{form.country.currencyCode}}, {{inPackage.percentage}}%)
-          </span>
-          </label>
-        <br>
-      </span>
+    <div class="py-5 text-xl font-bold space-x-4" v-if="totalPremium">
+      <span>Your Premium is: </span> <span>{{totalPremium}}{{form.country.currencyCode}}</span>
     </div>
-    <div v-if="totalPremium">
-      Your Premium is: {{totalPremium}}
-    </div>
-    <div>
-      <button @click="stepBack">Back</button>
-      <button @click="stepForward" :disabled="!(form.name && form.age)">Next</button>
+    <div class="py-4 space-x-4">
+      <button class="secondary-button" @click="stepBack">Back</button>
+      <button class="primary-button" @click="stepForward" :disabled="!(form.name && form.age)">Next</button>
     </div>
   </div>
 </template>

@@ -1,6 +1,6 @@
 <template>
   <div class="grid grid-cols-1">
-    <h1 class="text-4xl font-bold leading-relaxed mb-5">Hello There!</h1>
+    <h1 class="page-heading">Hello There!</h1>
     <p class="mb-5">
       Lets buy some insurance. Its going to take only few ssteps.
     </p>
